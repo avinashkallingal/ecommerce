@@ -6,15 +6,15 @@ mongoose.connect("mongodb://0.0.0.0:27017/frutable")
 .catch(()=>{console.error(e.message)})
 
 const userSchema=new mongoose.Schema({
-    username:{
+    name:{
         type:String,
         required:true
     },
-    password:{
+    price:{
         type:String,
         required:true
     },
-    email:{
+    discription:{
         type:String,
         required:true
     },
@@ -22,15 +22,10 @@ const userSchema=new mongoose.Schema({
         type:Number,
         required:true
     },
-    isAdmin:{
-        type:Number,
-        required:true
-    },
-    userBlock:{
+    stock:{
         type:Number,
         required:true
     }
-
 });
 
-module.exports=mongoose.model("users",userSchema);
+module.exports=mongoose.model("products",productSchema);
