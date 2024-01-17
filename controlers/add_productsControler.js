@@ -35,7 +35,7 @@ const addProducts = async (req, res, next) => {
             description: data.description,
             imagepath: imagePath,
             list: 0,
-            display: 0,
+            display: 1,
             stock: data.stock
 
         })

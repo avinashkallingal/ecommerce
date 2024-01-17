@@ -2,7 +2,7 @@ const mongoose=require("mongoose");
 const express=require("express")
 
 mongoose.connect("mongodb://0.0.0.0:27017/frutable")
-.then(()=>{console.log("connection established with mongodb")})
+.then(()=>{console.log("connection established with mongodb on collection users")})
 .catch(()=>{console.error(e.message)})
 
 const userSchema=new mongoose.Schema({

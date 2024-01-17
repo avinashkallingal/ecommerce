@@ -1,5 +1,6 @@
 const express = require("express")
 const userControl = require("../controlers/userControler")
+const tab = require("../controlers/tab_selection")
 const session = require("express-session")
 const path=require('path')
 
@@ -16,6 +17,9 @@ router.get("/adduser/verify_page",userControl.verify_page)
 router.post("/adduser/verifyemail", userControl.verifyEmail)
 router.all("/adduser/save", userControl.addUser)
 router.get("/signout",userControl.checkUserOut)
+
+
+router.get("/tab1",tab.allProducts)
 
 
 

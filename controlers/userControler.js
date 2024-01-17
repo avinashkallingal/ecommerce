@@ -107,8 +107,9 @@ const verifyEmail=async (req,res)=>{
 
 const home_page=(req,res)=>{
     username=req.params.username;
+    allProduct=req.session.allProduct
     console.log(req.params.username)
-    res.render("index",{username})
+    res.render("index",{username,allProduct})
 }
 
 

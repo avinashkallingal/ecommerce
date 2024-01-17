@@ -1,6 +1,6 @@
 const express = require("express")
 const adminControl = require("../controlers/adminControler")
-const addProducts = require("../controlers/add_products.Controler.js")
+const addProducts = require("../controlers/add_productsControler.js")
 const upload=require("../controlers/multerControler.js")
 const multer = require('multer');
 
@@ -15,11 +15,10 @@ router.post("/verify",adminControl.adminCheck)
 router.get("/home/:username",adminControl.isAdmin,adminControl.home_page)
 router.get("/logout",adminControl.checkUserOut)
 
-// router.post("/uploads",multer.cpUpload,(req,res)=>{
-// console,log("image uploaded")
-// })
-router.get("/add_products",addProducts.showProducts)
-router.post("/add_products/save",upload.array('image',4),addProducts.addProducts)
+// add product router starts
+router.get("/add_products",addProducts.showProducts)//router for showing add product page
+router.post("/add_products/save",upload.array('image',4),addProducts.addProducts)//router for saving products ,used multer as middleware for adding multiple(4) images
+// add product router ends
 
 
 
