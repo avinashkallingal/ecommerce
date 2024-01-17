@@ -11,20 +11,20 @@ var storage = multer.diskStorage({
   }
 })
 
-var upload = multer({
-  storage: storage,
-  fileFilter: function (req, file, callback) {
-    if (
-      file.mimetype == "image/png",
-      file.mimetype == "image/jpg"
-    ) {
-      callback(null, true)
-    } else {
-      console.log("only png and jpg can supported")
-    }
-  },
-  limits: {
-    filesize: 1024 * 1020 * 3
-  }
-});
+var upload = multer({storage: storage});
+  // ,
+  // fileFilter: function (req, file, callback) {
+  //   if (
+  //     file.mimetype == "image/png",
+  //     file.mimetype == "image/jpg"
+  //   ) {
+  //     callback(null, true)
+  //   } else {
+  //     console.log("only png and jpg can supported")
+  //   }
+  // },
+  // limits: {
+  //   filesize: 1024 * 1020 * 3
+  // }
+
 module.exports=upload

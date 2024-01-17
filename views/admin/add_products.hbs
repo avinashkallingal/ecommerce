@@ -241,9 +241,9 @@
 
                       <!-- discription -->
                       <div class="form-group row">
-                        <label class="col-sm-3 form-control-label">Discription</label>
+                        <label class="col-sm-3 form-control-label">Description</label>
                         <div class="col-sm-9">
-                          <input name="discription" type="text"  class="form-control"><small class="help-block-none">product details in 50 words</small>
+                          <input name="description" type="text"  class="form-control"><small class="help-block-none">product details in 50 words</small>
                         </div>
                       </div>
 
@@ -280,8 +280,16 @@
                         </div>
                      
                       </div>
-      
 
+
+                     <div class="line"></div>
+                      
+                        <div class="form-group row">
+                        <label class="col-sm-3 form-control-label">Stock</label>
+                        <div class="col-sm-9">
+                          <input name="stock" type="text"  class="form-control">
+                        </div>
+                      </div>
 
 
                       <div class="line"></div>
@@ -293,11 +301,11 @@
                         
                           <div class="form-group">
                             <div class="input-group">
-                              <input type="text" class="form-control" placeholder="you can add multiple images">
+                              <input name="image" type="file" class="form-control" placeholder="you can add multiple images" multiple>
                               <div class="input-group-append">
-                                <form action="/admin/upload">
-                                <button type="submit" class="btn btn-primary">Add</button>
-                                </form>
+                               
+                                <button type="file" class="btn btn-primary">Add</button>
+                                
                               </div>
                             </div>
                           </div>

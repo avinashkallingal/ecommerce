@@ -14,11 +14,11 @@ const productSchema=new mongoose.Schema({
         type:String,
         required:true
     },
-   caterory:{
+   category:{
         type:String,
         required:true
     },
-    discription:{
+    description:{
         type:String,
         required:true
     },
@@ -26,8 +26,16 @@ const productSchema=new mongoose.Schema({
         type:Number,
         required:true
     },
-    images:{
+    imagepath:{
         type:Array,
+        required:true
+    },
+    list:{
+        type:Number,
+        required:true
+    },
+    display:{
+        type:Number,
         required:true
     }
 });

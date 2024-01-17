@@ -19,7 +19,8 @@ router.get("/logout",adminControl.checkUserOut)
 // console,log("image uploaded")
 // })
 router.get("/add_products",addProducts.showProducts)
-router.post("/add_products/save",upload.single('avatar'),addProducts.addProducts)
+router.post("/add_products/save",upload.array('image',4),addProducts.addProducts)
+
 
 
 module.exports = router;
