@@ -228,12 +228,12 @@
                   <div class="title"><strong>Add Products</strong></div>
                   <div class="block-body">
 
-                    <form action="/admin/upload" class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <form action="/admin/add_products/save" class="form-horizontal" method="post" enctype="multipart/form-data">
                       <!-- product name -->
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Product Name</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control">
+                          <input name="productname" type="text" class="form-control" >
                         </div>
                       </div>
 
@@ -243,7 +243,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Discription</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control"><small class="help-block-none">product details in 50 words</small>
+                          <input name="discription" type="text"  class="form-control"><small class="help-block-none">product details in 50 words</small>
                         </div>
                       </div>
 
@@ -256,7 +256,7 @@
                         <div class="col-sm-9">                        
                           <div class="form-group">
                             <div class="input-group">
-                              <input type="text" class="form-control">
+                              <input name="price" type="text" class="form-control" >
                               <div class="input-group-append">
                                 <div class="input-group-append"><span class="input-group-text">/Rs</span></div>
                               </div>
@@ -271,7 +271,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Category</label>
                         <div class="col-sm-9">
-                          <select name="account" class="form-control mb-3 mb-3">
+                          <select name="category" class="form-control mb-3 mb-3">
                             <option>Vegitable</option>
                             <option>Fruit</option>
                             <option>Bread</option>
@@ -295,7 +295,9 @@
                             <div class="input-group">
                               <input type="text" class="form-control" placeholder="you can add multiple images">
                               <div class="input-group-append">
-                                <button type="button" class="btn btn-primary">Add</button>
+                                <form action="/admin/upload">
+                                <button type="submit" class="btn btn-primary">Add</button>
+                                </form>
                               </div>
                             </div>
                           </div>

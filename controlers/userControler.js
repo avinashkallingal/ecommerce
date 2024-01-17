@@ -142,7 +142,8 @@ const addUser=async(req,res)=>{
                     email:req.session.content.email,
                     password:hashPassword,
                     phone:req.session.content.phone,
-                    isAdmin:0
+                    isAdmin:0,
+                    userBlock:0
                 })
                 
                 await newUser.save();
