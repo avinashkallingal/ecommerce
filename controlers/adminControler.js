@@ -6,10 +6,13 @@ const adminLogin = (req, res) => {
     if (req.session.isAdminAuth) {
         username = req.session.username
         res.redirect(`/admin/home/${username}`);
-        res.redirect(`/home`)
+        // res.redirect(`/home`)
     }
     else {
-        res.render("login");
+        const errorMessage=req.query.errorMessage
+        const errUser=req.query.errUser
+        const errPassword=req.query.errPassword
+        res.render("login",{errorMessage,errUser,errPassword});
     }
 
 }
@@ -21,7 +24,7 @@ const isAdmin = (req, res, next) => {
     }
     else {
 
-        res.redirect("/admin/?message=login again");
+        res.redirect("/admin/?errorMessage=login again");
     }
 }
 

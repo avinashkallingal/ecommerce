@@ -233,7 +233,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Product Name</label>
                         <div class="col-sm-9">
-                          <input name="productname" type="text" class="form-control" >
+                          <input name="productname" type="text" class="form-control" required>
                         </div>
                       </div>
 
@@ -243,7 +243,7 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Description</label>
                         <div class="col-sm-9">
-                          <input name="description" type="text"  class="form-control"><small class="help-block-none">product details in 50 words</small>
+                          <input name="description" type="text"  class="form-control" required><small class="help-block-none">product details in 50 words</small>
                         </div>
                       </div>
 
@@ -256,7 +256,7 @@
                         <div class="col-sm-9">                        
                           <div class="form-group">
                             <div class="input-group">
-                              <input name="price" type="text" class="form-control" >
+                              <input name="price" type="text" class="form-control" required>
                               <div class="input-group-append">
                                 <div class="input-group-append"><span class="input-group-text">/Rs</span></div>
                               </div>
@@ -271,11 +271,11 @@
                       <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Category</label>
                         <div class="col-sm-9">
-                          <select name="category" class="form-control mb-3 mb-3">
+                          <select name="category" class="form-control mb-3 mb-3" required>
                             <option>Vegitable</option>
                             <option>Fruit</option>
                             <option>Bread</option>
-                            <option><button>Add category</button></option>
+                            
                           </select>
                         </div>
                      
@@ -287,7 +287,7 @@
                         <div class="form-group row">
                         <label class="col-sm-3 form-control-label">Stock</label>
                         <div class="col-sm-9">
-                          <input name="stock" type="text"  class="form-control">
+                          <input name="stock" type="text"  class="form-control" required>
                         </div>
                       </div>
 
@@ -301,7 +301,7 @@
                         
                           <div class="form-group">
                             <div class="input-group">
-                              <input name="image" type="file" class="form-control" placeholder="you can add multiple images" multiple>
+                              <input name="image" type="file" class="form-control" placeholder="you can add multiple images" multiple required>
                               <div class="input-group-append">
                                
                                
@@ -319,11 +319,12 @@
                       <!-- button -->
                       <div class="form-group row">
                         <div class="col-sm-9 ml-auto">
-                          <button type="submit" class="btn btn-secondary">Cancel</button>
+                          <button action="/admin/productlist" class="btn btn-secondary">Cancel</button>
                           <button type="submit" class="btn btn-primary">Save</button>
                         </div>
                       </div>
-                    </form>
+                      </form>
+                     
                   </div>
                 </div>
               </div>

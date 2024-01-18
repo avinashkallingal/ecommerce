@@ -29,4 +29,10 @@ router.get("/home/fruit",userControl.isUser, userControl.home_page_fruit)
 router.get("/home/bread",userControl.isUser, userControl.home_page_bread)
 
 
+//router to show product details
+router.get('/productdetails',(req,res)=>{
+    res.render("shopdetails")
+    })
+
+
 module.exports = router

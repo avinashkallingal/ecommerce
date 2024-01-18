@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dark Bootstrap Admin </title>
+    <title>Admin Frutable</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -37,7 +37,7 @@
                   <div class="logo">
                     <h1>Dashboard</h1>
                   </div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  <p>It's FRUTABLE Admin page.</p>
                 </div>
               </div>
             </div>
@@ -47,15 +47,17 @@
                 <div class="content">
                   <form action="/admin/verify" method="post" class="form-validate">
                     <div class="form-group">
+                      
                       <input id="login-username" type="text" name="username" required data-msg="Please enter your username" class="input-material">
                       <label for="login-username" class="label-material">User Name</label>
                     </div>
+                   
                     <div class="form-group">
                       <input id="login-password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
-                      <label for="login-password" class="label-material">Password</label>
+                      <label for="login-password" class="label-material">Password</label><span class="p-5 text-danger">{{errPassword}} {{errorMessage}}</span> <span class="p-5 text-danger">{{errUser}}</span>
                     </div><button type="submit" id="login" class="btn btn-primary">Login</button>
                     <!-- This should be submit button but I replaced it with <a> for demo purposes-->
-                  </form><a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a>
+                  {{!-- </form><a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a> --}}
                 </div>
               </div>
             </div>
