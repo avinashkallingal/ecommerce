@@ -4,7 +4,7 @@ const product = require("../models/productsModel")
 
 const allProducts = async (req, res) => {
     try {
-        const allProduct = await product.find();
+        const allProduct = await product.find({ display: 1 });
         if (allProduct) {
             return allProduct
         } else {
@@ -20,7 +20,7 @@ const allProducts = async (req, res) => {
 
 const vegitables = async (req, res) => {
     try {
-        const vegitable = await product.find({ category: "Vegitable" });
+        const vegitable = await product.find({ $and: [{ display: 1},{ category: "Vegitable" }]} );
         console.log(vegitable)
         if (vegitable) {
             return vegitable
