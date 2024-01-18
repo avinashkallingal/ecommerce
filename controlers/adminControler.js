@@ -6,7 +6,7 @@ const adminLogin = (req, res) => {
     {
         username=req.session.username
         res.redirect(`/admin/home/${username}`);
-        res.redirect(`/home/${req.session.username}`)
+        res.redirect(`/home`)
     }
     else{
         res.render("login");

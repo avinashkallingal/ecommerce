@@ -1,4 +1,5 @@
 const userModel=require("../models/userModel")
+const tab = require("../controlers/tab_selection")
 const bcrypt=require("bcrypt")
 const sendEmail=require("../utils/sendEmail")
 const jwt=require("jsonwebtoken")
@@ -16,7 +17,7 @@ const login_page=(req,res)=>{
     message=req.query.message
     console.log(req.session.isUserAuth+" session is there or not")
     if(req.session.isUserAuth){
-        res.redirect("/home/${req.session.username}")
+        res.redirect("/home")
     }
     else{
 
@@ -105,12 +106,51 @@ const verifyEmail=async (req,res)=>{
 
 
 
-const home_page=(req,res)=>{
-    username=req.params.username;
-    allProduct=req.session.allProduct
-    console.log(req.params.username)
-    res.render("index",{username,allProduct})
+
+
+const home_page=async (req,res)=>{
+   const allProduct=await tab.allProducts();
+   var username=req.session.username
+       res.render("index",{username,allProduct})
 }
+
+
+const home_page_vegitable=async(req,res)=>{
+    console.log("vegitable clicked")
+    const vegitable=await tab.vegitables();
+    var username=req.session.username
+        res.render("index",{username,vegitable})
+ }
+
+ const home_page_fruit=async (req,res)=>{
+    const fruit=await tab.fruits();
+    var username=req.session.username
+        res.render("index",{username,fruit})
+ }
+
+
+ const home_page_bread=async (req,res)=>{
+    const bread=await tab.breads();
+    var username=req.session.username
+        res.render("index",{username,bread})
+ }
+
+// const home_page=(req,res)=>{
+//     const allProduct=tab.allProducts();
+//      username=req.params.username;
+//          allProduct=req.session.allProduct
+//      if(req.session.vegitable){
+//          vegitable=req.session.vegitable}
+//          else{
+//              vegitable="";
+//          }
+//      if()
+//      fruit=req.session.fruit
+//      bread=req.session.bread
+//      console.log(req.params.username)
+//      console.log(req.session.allProduct)
+//      res.render("index",{username,allProduct,vegitable,fruit,bread})
+//  }
 
 
 
@@ -195,7 +235,7 @@ const checkUserIn=async(req,res)=>{
                 console.log(req.session.username+"session storage")
                 console.log(checkUser.username+"db storage")
                 // res.send("hiii its home")
-                res.redirect(`/home/${req.session.username}`)
+                res.redirect(`/home`)
                
             }else{
                 res.redirect("/?errPassword=invalid password")
@@ -227,4 +267,4 @@ const checkUserOut = async(req,res)=>{
 
 
 
-module.exports={login_page,signup_page,addUser,checkUserIn,isUser,verify_page,checkUserOut,home_page,verifyEmail}
+module.exports={login_page,signup_page,addUser,checkUserIn,isUser,verify_page,checkUserOut,home_page,verifyEmail,home_page_vegitable,home_page_fruit,home_page_bread}

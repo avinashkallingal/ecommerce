@@ -19,11 +19,14 @@ router.all("/adduser/save", userControl.addUser)
 router.get("/signout",userControl.checkUserOut)
 
 
-router.get("/tab1",tab.allProducts)
 
 
 
-router.get("/home/:username",userControl.isUser, userControl.home_page)
+
+router.get("/home",userControl.isUser, userControl.home_page)
+router.get("/home/vegitable",userControl.isUser, userControl.home_page_vegitable)
+router.get("/home/fruit",userControl.isUser, userControl.home_page_fruit)
+router.get("/home/bread",userControl.isUser, userControl.home_page_bread)
 
 
 module.exports = router
