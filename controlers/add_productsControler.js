@@ -54,50 +54,6 @@ const addProducts = async (req, res, next) => {
 
 
 }
-//copy
 
 
-
-
-// const addProducts=async(req,res)=>{
-
-//     console.log("adding product")
-
-
-
-//     try{
-
-
-
-
-
-//                 const newProduct=new productModel({
-//                     name:req.body.name,
-//                     price:req.body.price,
-//                     caterory:req.body.caterory,
-//                     discription:req.body.discription,
-//                     stock:req.body.stock,
-
-//                 })
-
-//                 await newProduct.save();
-//                 res.redirect("/?message=user created ,please login")
-
-
-
-
-
-
-//     } catch ( error ) {
-
-//         // For security proposes, error will always be 'Invalid or expired token'
-//         console.error( error )
-
-//         // But you can dig it up by checking `.parent` Error
-//         console.error( error.parent );
-
-//     }
-
-
-// }
 module.exports = { showProducts, addProducts }

@@ -185,13 +185,9 @@
                             <td>{{this.stock}}</td>
                             <td>
                               <img style="width: auto;height: 50px;" src="{{this.imagepath.[1]}}" alt="Product Image">
-                              {{!-- <img src="/uploads/1704296379438-Screenshot (60).png" alt="sdln"> --}}
-            
-                              {{!-- <p>{{this.imagePath.[0]}}----++</p> --}}
-                              {{!-- <a href="{{this.imagePath.[0]}}">dsfgssdg</a> --}}
+                             
                             </td>
-                            {{!-- <td><a href="/admin/edit_product/{{this.name}}" style="text-decoration: none; color:white"
-                                class="btn btn-primary">Edit</a></td> --}}
+                            {{!-- adding edit page as modal --}}
                             <td><!-- Button trigger modal -->
                               <a href="/admin/products?val={{this.productname}}" class="btn btn-primary" data-toggle="modal"
                                 data-target="#exampleModal{{@key}}">
@@ -223,7 +219,7 @@
             
                                           {{!-- <select class="form-select" aria-label="Default select example" name="category">
                                             {{!-- {{#each cat}} --}}
-                                            <option value="{{this.category}}">{{this.category}}</option>
+                                            <option value="{{this.category}}"></option>
                                             {{!-- {{/each}}
                                           </select> --}}
                                           {{!-- <select name="category" id="" class="btn btn-primary">
