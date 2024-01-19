@@ -5,6 +5,7 @@ const sendEmail = require("../utils/sendEmail")
 const jwt = require("jsonwebtoken")
 require('dotenv').config()
 const otpGenerator = require('otp-generator')
+const productsModel = require("../models/productsModel")
 
 
 
@@ -259,6 +260,22 @@ const checkUserIn = async (req, res) => {
 }
 
 
+const productDetails=async (req,res)=>{
+    try{
+       const username=req.session.username
+    const product=await productsModel.find({productname:req.params.productname})
+    if(product){
+        console.log("found product")
+        console.log(product)
+    res.render("shopdetails",{product,username})
+    
+    }}
+    catch(e){
+        console.log("error in user control productdetails function"+e)
+    }
+    }
+
+
 
 
 
@@ -273,4 +290,4 @@ const checkUserOut = async (req, res) => {
 
 
 
-module.exports = { login_page, signup_page, addUser, checkUserIn, isUser, verify_page, checkUserOut, home_page, verifyEmail, home_page_vegitable, home_page_fruit, home_page_bread }
+module.exports = { login_page, signup_page, addUser, checkUserIn, isUser, verify_page, checkUserOut, home_page, verifyEmail, home_page_vegitable, home_page_fruit, home_page_bread,productDetails }

@@ -3,6 +3,7 @@ const userControl = require("../controlers/userControler")
 const tab = require("../controlers/tab_selection")
 const session = require("express-session")
 const path=require('path')
+const productsModel = require("../models/productsModel")
 
 
 const router = express.Router();
@@ -29,10 +30,10 @@ router.get("/home/fruit",userControl.isUser, userControl.home_page_fruit)
 router.get("/home/bread",userControl.isUser, userControl.home_page_bread)
 
 
+
+
 //router to show product details
-router.get('/productdetails',(req,res)=>{
-    res.render("shopdetails")
-    })
+router.get('/productdetails/:productname',userControl.isUser,userControl.productDetails)
 
 
 module.exports = router

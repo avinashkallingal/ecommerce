@@ -61,7 +61,7 @@
         </div>
         <div class="container px-0">
             <nav class="navbar navbar-light bg-white navbar-expand-xl">
-                <a href="index.html" class="navbar-brand">
+                <a href="/home" class="navbar-brand">
                     <h1 class="text-primary display-6">Fruitables</h1>
                 </a>
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse"
@@ -70,7 +70,7 @@
                 </button>
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        <a href='/home' class="nav-item nav-link active">Home</a>
                         <a href="shop.html" class="nav-item nav-link">Shop</a>
                         <a href="shop-detail.html" class="nav-item nav-link">Shop Detail</a>
                         <div class="nav-item dropdown">
@@ -283,13 +283,13 @@
                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
-                                                 <a href='/productdetails'><img src="{{this.imagepath.[1]}}" class="img-fluid w-100 rounded-top"
+                                                 <a href='/productdetails/{{this.productname}}'><img src="{{this.imagepath.[1]}}" style="height: 30vh;" class="img-fluid w-100 rounded-top"
                                                     alt="image"></a>
 
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                                                 style="top: 10px; left: 10px;">{{this.category}}</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                            <div style="height: 50vh;" class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4>{{this.productname}}</h4>
                                                 <p>{{this.description}}</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
@@ -321,13 +321,13 @@
                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
-                                                <img src="{{this.imagepath.[1]}}" class="img-fluid w-100 rounded-top"
-                                                    alt="image">
+                                               <a href='/productdetails/{{this.productname}}'><img src="{{this.imagepath.[1]}}" style="height: 30vh;" class="img-fluid w-100 rounded-top"
+                                                    alt="image"></a>
 
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                                                 style="top: 10px; left: 10px;">{{this.category}}</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                            <div style="height: 50vh;" class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4>{{this.productname}}</h4>
                                                 <p>{{this.description}}</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
@@ -359,13 +359,13 @@
                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
-                                                <img src="{{this.imagepath.[1]}}" class="img-fluid w-100 rounded-top"
-                                                    alt="image">
+                                               <a href='/productdetails/{{this.productname}}'><img src="{{this.imagepath.[1]}}" style="height: 30vh;" class="img-fluid w-100 rounded-top"
+                                                    alt="image"></a>
 
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                                                 style="top: 10px; left: 10px;">{{this.category}}</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                            <div style="height: 50vh;" class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4>{{this.productname}}</h4>
                                                 <p>{{this.description}}</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
@@ -397,13 +397,15 @@
                                     <div class="col-md-6 col-lg-4 col-xl-3">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
-                                                <img src="{{this.imagepath.[1]}}" class="img-fluid w-100 rounded-top"
-                                                    alt="image">
+                                                <a href='/productdetails/{{this.productname}}'><img src="{{this.imagepath.[1]}}" style="height: 30vh;" class="img-fluid w-100 rounded-top"
+                                                    alt="image"></a>
+                                                {{!-- <img src="{{this.imagepath.[1]}}" style="height: 50vh;" class="img-fluid w-100 rounded-top"
+                                                    alt="image"> --}}
 
                                             </div>
                                             <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                                                 style="top: 10px; left: 10px;">{{this.category}}</div>
-                                            <div class="p-4 border border-secondary border-top-0 rounded-bottom">
+                                            <div style="height: 50vh;" class="p-4 border border-secondary border-top-0 rounded-bottom">
                                                 <h4>{{this.productname}}</h4>
                                                 <p>{{this.description}}</p>
                                                 <div class="d-flex justify-content-between flex-lg-wrap">
