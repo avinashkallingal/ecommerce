@@ -1,6 +1,11 @@
 const userModel = require("../models/userModel")
 const productModel = require("../models/productsModel")
 const bcrypt = require("bcrypt")
+const userControl = require("../controlers/userControler")
+var mongoose = require("mongoose");
+
+
+
 
 const adminLogin = (req, res) => {
     if (req.session.isAdminAuth) {
@@ -9,10 +14,10 @@ const adminLogin = (req, res) => {
         // res.redirect(`/home`)
     }
     else {
-        const errorMessage=req.query.errorMessage
-        const errUser=req.query.errUser
-        const errPassword=req.query.errPassword
-        res.render("login",{errorMessage,errUser,errPassword});
+        const errorMessage = req.query.errorMessage
+        const errUser = req.query.errUser
+        const errPassword = req.query.errPassword
+        res.render("login", { errorMessage, errUser, errPassword });
     }
 
 }
@@ -80,7 +85,7 @@ const showProducts = async (req, res) => {
     console.log("product list got")
     console.log(products)
 
-    res.render("list_products", { products })
+    res.render("listProducts", { products })
 }
 
 
@@ -97,7 +102,7 @@ const unlistProduct = async (req, res) => {
         let unlist = products[0].display
         if (unlist == 1) {
             unlist = 0
-        }else{
+        } else {
             unlist = 1
         }
         await productModel.updateOne({ productname: req.params.id }, { display: unlist })
@@ -111,54 +116,83 @@ const unlistProduct = async (req, res) => {
 
 
 
-const editProduct=async(req,res)=>{
-    
-
+const editProduct = async (req, res) => {
     console.log("edit product")
     console.log(req.body)
-    try{
-        await productModel.updateOne({productname:req.params.productname},
-            {$set:
+    console.log("edit product body")
+    console.log(req.params.id)
+
+    var id = new mongoose.Types.ObjectId(req.params.id);
+    console.log(id)
+    let imagePath = [];
+        let len = req.files
+        if(req.files){
+        console.log("image if there if condition")
+        for (let i = 0; i < len.length; i++) {
+            imagePath[i] = req.files[i].path.replace(/\\/g, "/").replace('public/', '/')
+        }}
+    try {
+
+        await productModel.updateOne({ _id: id },
+            {
+                $set:
                 {
-                    productname:req.body.name,
-                    price:req.body.price,
-                    category:req.body.category,
-                    description:req.body.description,
-                    stock:req.body.stock
+                    productname: req.body.name,
+                    price: req.body.price,
+                    category: req.body.category,
+                    description: req.body.description,
+                    stock: req.body.stock,
+                    imagepath: imagePath
                 }
             }
-            )
-            res.redirect("/admin/productlist")
+        )
+        // copy
+        
+
+        // imagePath[1] = req.files[1].path.replace(/\\/g, "/").replace('public/', '/')
+        // imagePath[2] = req.files[2].path.replace(/\\/g, "/").replace('public/', '/')
+        // imagePath[3] = req.files[3].path.replace(/\\/g, "/").replace('public/', '/')
+        console.log("a data saved 2")
+        console.log(imagePath)
+        
+            
+           
+        // copy
+
+        res.redirect("/admin/productlist")
     }
-    catch(e){
-console.log("error while product update"+e)
+    catch (e) {
+        console.log("error while product update in admin controller" + e)
     }
 }
 
 
-const listusers=async(req,res)=>{
-    const users=await userModel.find();
+const listusers = async (req, res) => {
+    const users = await userModel.find();
 
-res.render("list_users",{users})
+    res.render("list_users", { users })
 }
 
-const blockuser=async(req,res)=>{
+
+
+const blockuser = async (req, res) => {
     try {
         console.log(req.params.id)
         let users = await userModel.find({ username: req.params.id })
         let block = users[0].userBlock
         if (block == 0) {
             block = 1
-        }else{
+        } else {
             block = 0
         }
         await userModel.updateOne({ username: req.params.id }, { userBlock: block })
+        // userControl.checkUserOut_live();
         res.redirect('/admin/listusers')
 
     } catch (e) {
         console.log('error in the blockProduct in adminController : ' + e)
     }
- 
+
 }
 
-module.exports = { adminLogin, adminCheck, home_page, checkUserOut, isAdmin, showProducts, unlistProduct,editProduct,listusers,blockuser }
+module.exports = { adminLogin, adminCheck, home_page, checkUserOut, isAdmin, showProducts, unlistProduct, editProduct, listusers, blockuser }

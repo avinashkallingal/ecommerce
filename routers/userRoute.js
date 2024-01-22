@@ -1,6 +1,6 @@
 const express = require("express")
 const userControl = require("../controlers/userControler")
-const tab = require("../controlers/tab_selection")
+const tab = require("../controlers/tabSelection")
 const session = require("express-session")
 const path=require('path')
 const productsModel = require("../models/productsModel")

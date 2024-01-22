@@ -1,11 +1,12 @@
 const userModel = require("../models/userModel")
-const tab = require("../controlers/tab_selection")
+const tab = require("./tabSelection")
 const bcrypt = require("bcrypt")
 const sendEmail = require("../utils/sendEmail")
 const jwt = require("jsonwebtoken")
 require('dotenv').config()
 const otpGenerator = require('otp-generator')
 const productsModel = require("../models/productsModel")
+const session=require('express-session')
 
 
 
@@ -285,6 +286,16 @@ const checkUserOut = async (req, res) => {
     console.log("session end ,sign out")
     res.redirect('/?message=sign out successfully')
 }
+
+// const checkUserOut_live = async (req, res) => {
+//     console.log("live session area")
+//     if (req.session.isUserAuth) {
+//         await req.session.isUserAuth.destroy()
+//     } else {
+//         res.status(401).send('Unauthorized');
+//         console.log("no sessions found")
+//     }
+// }
 
 
 
