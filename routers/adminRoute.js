@@ -35,6 +35,20 @@ router.get('/unlist/:id',adminControl.isAdmin,adminControl.unlistProduct)
 //router to list users
 router.get('/listusers',adminControl.isAdmin,adminControl.listusers)
 
+//router to list category
+router.get('/listcategory',adminControl.isAdmin,adminControl.listCategory)
+
+//router to add category
+router.post('/addCategory',adminControl.isAdmin,adminControl.addCategory)
+
+//router to edit category
+router.post('/editCategory/:id',adminControl.isAdmin,adminControl.editCategory)
+
+//router to unlist category
+router.get('/unlistCategory/:id',adminControl.isAdmin,adminControl.unlistCategory)
+
+
+
 //router to block users
 router.get('/block/:id',adminControl.isAdmin,adminControl.blockuser)
 

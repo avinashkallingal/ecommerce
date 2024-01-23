@@ -3,7 +3,8 @@ const productModel = require("../models/productsModel")
 const bcrypt = require("bcrypt")
 const userControl = require("../controlers/userControler")
 var mongoose = require("mongoose");
-const fs = require("fs")
+const fs = require("fs");
+const categoryModel = require("../models/categoryModel");
 
 
 
@@ -131,9 +132,34 @@ const editProduct = async (req, res) => {
     try {
         let imagePath = [];
         let len = req.files
-        
+  
         if (req.files.length != 0) {
-            console.log("image is there")
+            //  //copy
+            // console.log("image is there")
+            // const oldPath=await productModel.find({_id:id},{imagepath:1,_id:0})
+            // console.log(oldPath)
+            // const oldPath_new=Array.from(oldPath)
+            // console.log(oldPath+"after conversion")
+            // console.log(oldPath[0])
+            // console.log(oldPath[1])          
+            // const filePaths = oldPath_new;
+           
+            // filePaths.forEach(filePath => {
+            //     fs.unlink(filePath, (err) => {
+            //       if (err) {
+            //         console.error(`Error deleting file ${filePath}:`, err);
+            //       } else {
+            //         console.log(`File ${filePath} deleted successfully.`);
+            //       }
+            //     });
+            //   });
+            //   console.log('File deleted successfully.');
+           
+            // //copy
+
+
+
+            
             for (let i = 0; i < len.length; i++) {
                 imagePath[i] = req.files[i].path.replace(/\\/g, "/").replace('public/', '/')
             }
@@ -166,7 +192,7 @@ const editProduct = async (req, res) => {
             )
         }
 
-        // copy
+      
 
 
         // imagePath[1] = req.files[1].path.replace(/\\/g, "/").replace('public/', '/')
@@ -194,6 +220,92 @@ const listusers = async (req, res) => {
 }
 
 
+const listCategory=async(req,res)=>{
+    const category=await categoryModel.find()
+    res.render("category",{category})
+}
+
+
+const addCategory = async (req, res, next) => {
+    console.log("hi this is add category")
+    try {
+
+        console.log(req.body)
+             const data=req.body;      
+        const newCategory = new categoryModel({
+
+            category: data.category,
+            list: 1
+          
+        })
+      
+        await newCategory.save()
+        console.log("a data saved 3")
+        res.redirect("/admin/listcategory")
+    }
+
+    catch (e) {
+        console.log("problem with the category details in admin control" + e)
+    }
+
+
+}
+
+
+
+const editCategory = async (req, res) => {
+    console.log("edit category")
+    console.log(req.body)
+    console.log("edit category body")
+    console.log(req.params.id)
+    console.log(req.files)
+
+    var id = new mongoose.Types.ObjectId(req.params.id);
+    console.log(id)
+
+    try {          
+          
+            await categoryModel.updateOne({ _id: id },
+                {
+                    $set:
+                    {
+                        category: req.body.category
+                      
+                    }
+                }
+            )
+       
+                console.log(req.body.category)
+        res.redirect("/admin/listcategory")
+    }
+    catch (e) {
+        console.log("error while category update in admin controller" + e)
+    }
+}
+
+
+const unlistCategory = async (req, res) => {
+    try {
+        console.log(req.params.id)
+
+        var id = new mongoose.Types.ObjectId(req.params.id);
+        let category = await categoryModel.find({ _id: id})
+        console.log(category)
+        let unlist = category[0].list
+        if (unlist == 1) {
+            unlist = 0
+        } else {
+            unlist = 1
+        }
+        await categoryModel.updateOne({ _id: id }, { list: unlist })
+        res.redirect('/admin/listcategory')
+
+    } catch (e) {
+        console.log('error in the unlistcategory in adminController : ' + e)
+    }
+}
+
+
 
 const blockuser = async (req, res) => {
     try {
@@ -215,4 +327,4 @@ const blockuser = async (req, res) => {
 
 }
 
-module.exports = { adminLogin, adminCheck, home_page, checkUserOut, isAdmin, showProducts, unlistProduct, editProduct, listusers, blockuser }
+module.exports = { adminLogin, adminCheck, home_page, checkUserOut, isAdmin, showProducts, unlistProduct, editProduct, listusers,listCategory,addCategory,editCategory,unlistCategory, blockuser }

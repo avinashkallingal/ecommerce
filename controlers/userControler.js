@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken")
 require('dotenv').config()
 const otpGenerator = require('otp-generator')
 const productsModel = require("../models/productsModel")
+const categoryModel = require('../models/categoryModel')
 const session=require('express-session')
 
 
@@ -113,6 +114,8 @@ const verifyEmail = async (req, res) => {
 
 const home_page = async (req, res) => {
     const allProduct = await tab.allProducts();
+    const category = await categoryModel.find({})
+    console.log(category)
     var username = req.session.username
     res.render("index", { username, allProduct })
 }
