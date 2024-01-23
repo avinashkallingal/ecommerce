@@ -218,7 +218,7 @@
                         <td>{{this.price}}</td>
                         <td>{{this.stock}}</td>
                         <td>
-                          <img style="width: auto;height: 50px;" src="{{this.imagepath.[1]}}" alt="Product Image">
+                          <img style="width: auto;height: 50px;" src="{{this.imagepath.[0]}}" alt="Product Image">
 
                         </td>
                         {{!-- adding edit page as modal --}}
@@ -232,7 +232,8 @@
                           <div class="modal fade" id="exampleModal{{@key}}" tabindex="-1" role="dialog"
                             aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
-                              <form action="/admin/edit_products/{{this._id}}" method="post" enctype="multipart/form-data">
+                              <form action="/admin/edit_products/{{this._id}}" method="post"
+                                enctype="multipart/form-data">
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
@@ -243,8 +244,7 @@
                                   <div class="modal-body">
                                     <div class="form-group">
                                       <label class="form-control-label">Name</label>
-                                      <input type="text" value="{{this.productname}}" class="form-control"
-                                        name="name">
+                                      <input type="text" value="{{this.productname}}" class="form-control" name="name">
                                       {{!-- <p id="check"> {{this.name}}</p> --}}
                                     </div>
 
@@ -253,7 +253,7 @@
                                       <input type="number" value="{{this.price}}" class="form-control" name="price">
                                     </div>
 
-                                      <div class="form-group">
+                                    <div class="form-group">
                                       <label class="form-control-label">Stock</label>
                                       <input type="number" value="{{this.stock}}" class="form-control" name="stock">
                                     </div>
@@ -264,7 +264,8 @@
 
 
 
-                                      {{!-- <select class="form-control" name="category" aria-placeholder="{{this.category}}">
+                                      {{!-- <select class="form-control" name="category"
+                                        aria-placeholder="{{this.category}}">
                                         <option value="Vegitable">Vegitable</option>
                                         <option value="Fruit">Fruit</option>
                                         <option value="Bread">Bread</option>
@@ -273,8 +274,7 @@
 
 
 
-                                      <input type="text" value="{{this.category}}" class="form-control"
-                                        name="category">
+                                      <input type="text" value="{{this.category}}" class="form-control" name="category">
 
                                       {{!-- <select class="form-select" aria-label="Default select example"
                                         name="category">
@@ -294,18 +294,16 @@
                                         name="description">
                                     </div>
 
-                                  
+
                                     <div class="form-group contanier">
                                       <label class="form-control-label">Product Images</label>
                                       <div class="row ">
                                         <img src="{{this.imagepath.[0]}}" alt="img of product"
                                           style="height: 50px;width:50px" class="ml-5 ">
-                                        <div> <input name="image" type="file" class="form-control"
-                                            placeholder="you can add multiple images" multiple></div>
+                                        <div> <input name="image" type="file" class="form-control"></div>
                                         <img src="{{this.imagepath.[1]}}" alt="img of product"
                                           style="height: 50px;width:50px" class="ml-5">
-                                        <div> <input name="image" type="file" class="form-control"
-                                            placeholder="you can add multiple images" multiple></div>
+                                        <div> <input name="image" type="file" class="form-control"></div>
                                         {{!-- <img src="{{this.imagepath.[2]}}" alt="img of product"
                                           style="height: 50px;width:50px" class="ml-5"> --}}
                                         {{!-- <div> <input name="image" type="file" class="form-control"

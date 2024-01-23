@@ -3,6 +3,7 @@ const productModel = require("../models/productsModel")
 const bcrypt = require("bcrypt")
 const userControl = require("../controlers/userControler")
 var mongoose = require("mongoose");
+const fs = require("fs")
 
 
 
@@ -83,7 +84,7 @@ const adminCheck = async (req, res) => {
 const showProducts = async (req, res) => {
     var products = await productModel.find();
     console.log("product list got")
-    console.log(products)
+    // console.log(products)
 
     res.render("listProducts", { products })
 }
@@ -121,42 +122,61 @@ const editProduct = async (req, res) => {
     console.log(req.body)
     console.log("edit product body")
     console.log(req.params.id)
+    console.log(req.files)
 
     var id = new mongoose.Types.ObjectId(req.params.id);
     console.log(id)
-    let imagePath = [];
-        let len = req.files
-        if(req.files){
-        console.log("image if there if condition")
-        for (let i = 0; i < len.length; i++) {
-            imagePath[i] = req.files[i].path.replace(/\\/g, "/").replace('public/', '/')
-        }}
-    try {
 
-        await productModel.updateOne({ _id: id },
-            {
-                $set:
-                {
-                    productname: req.body.name,
-                    price: req.body.price,
-                    category: req.body.category,
-                    description: req.body.description,
-                    stock: req.body.stock,
-                    imagepath: imagePath
-                }
-            }
-        )
-        // copy
+
+    try {
+        let imagePath = [];
+        let len = req.files
         
+        if (req.files.length != 0) {
+            console.log("image is there")
+            for (let i = 0; i < len.length; i++) {
+                imagePath[i] = req.files[i].path.replace(/\\/g, "/").replace('public/', '/')
+            }
+
+            await productModel.updateOne({ _id: id },
+                {
+                    $set:
+                    {
+                        productname: req.body.name,
+                        price: req.body.price,
+                        category: req.body.category,
+                        description: req.body.description,
+                        stock: req.body.stock,
+                        imagepath: imagePath
+                    }
+                }
+            )
+        } else {
+            await productModel.updateOne({ _id: id },
+                {
+                    $set:
+                    {
+                        productname: req.body.name,
+                        price: req.body.price,
+                        category: req.body.category,
+                        description: req.body.description,
+                        stock: req.body.stock,
+                    }
+                }
+            )
+        }
+
+        // copy
+
 
         // imagePath[1] = req.files[1].path.replace(/\\/g, "/").replace('public/', '/')
         // imagePath[2] = req.files[2].path.replace(/\\/g, "/").replace('public/', '/')
         // imagePath[3] = req.files[3].path.replace(/\\/g, "/").replace('public/', '/')
         console.log("a data saved 2")
         console.log(imagePath)
-        
-            
-           
+
+
+
         // copy
 
         res.redirect("/admin/productlist")
