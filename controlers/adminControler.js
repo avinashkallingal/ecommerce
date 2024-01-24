@@ -84,10 +84,12 @@ const adminCheck = async (req, res) => {
 
 const showProducts = async (req, res) => {
     var products = await productModel.find();
+    var categoryName=await categoryModel.find();
     console.log("product list got")
+    console.log(categoryName)
     // console.log(products)
 
-    res.render("listProducts", { products })
+    res.render("listProducts", { products,categoryName })
 }
 
 
@@ -163,6 +165,8 @@ const editProduct = async (req, res) => {
             for (let i = 0; i < len.length; i++) {
                 imagePath[i] = req.files[i].path.replace(/\\/g, "/").replace('public/', '/')
             }
+            // imagePath[0] = req.files[0].path.replace(/\\/g, "/").replace('public/', '/')
+            // imagePath[1] = req.files[1].path.replace(/\\/g, "/").replace('public/', '/')
 
             await productModel.updateOne({ _id: id },
                 {

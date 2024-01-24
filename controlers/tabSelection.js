@@ -1,4 +1,5 @@
 const product = require("../models/productsModel")
+const categoryModel = require("../models/categoryModel")
 
 
 
@@ -18,6 +19,44 @@ const allProducts = async (req, res) => {
 
 
 
+const category = async (params) => {
+    try {
+        const categoryName = await product.find({ $and: [{ display: 1},{ category: params }]} );
+        console.log(categoryName)
+        if (categoryName) {
+            return categoryName
+        } else {
+            console.log("details not found!!")
+        }
+    } catch (error) {
+        console.log(error.message)
+        // res.redirect('/error?message= something went wrong!')
+    }
+}
+
+
+
+
+const categoryName = async (req, res) => {
+    try {
+        const category_name = await categoryModel.find({list: 1});
+        console.log(category_name)
+        if (category_name) {
+            return category_name
+        } else {
+            console.log("details not found!!")
+        }
+    } catch (error) {
+        console.log(error.message)
+        // res.redirect('/error?message= something went wrong!')
+    }
+}
+
+
+
+
+
+
 const vegitables = async (req, res) => {
     try {
         const vegitable = await product.find({ $and: [{ display: 1},{ category: "Vegitable" }]} );
@@ -32,6 +71,7 @@ const vegitables = async (req, res) => {
         // res.redirect('/error?message= something went wrong!')
     }
 }
+
 
 const fruits = async (req, res) => {
     try {
@@ -84,4 +124,4 @@ const breads = async (req, res) => {
 // }
 
 
-module.exports = { allProducts, vegitables, fruits, breads }
+module.exports = { allProducts, vegitables, fruits, breads ,category,categoryName}

@@ -112,34 +112,50 @@ const verifyEmail = async (req, res) => {
 
 
 
-const home_page = async (req, res) => {
+const homePage = async (req, res) => {
     const allProduct = await tab.allProducts();
-    const category = await categoryModel.find({})
-    console.log(category)
+    const categoryName = await tab.categoryName();
+    console.log(categoryName+" category name")
+    // const category = await categoryModel.find({})
+    // console.log(category)
     var username = req.session.username
-    res.render("index", { username, allProduct })
+    res.render("index", { username, allProduct,categoryName })
 }
 
 
-const home_page_vegitable = async (req, res) => {
-    console.log("vegitable clicked")
-    const vegitable = await tab.vegitables();
+const homePageCategory = async (req, res) => {
+    console.log("category clicked")
+    const params=req.params.category
+    console.log(params+" category name is this")
+    const categoryName = await tab.categoryName();
+    const category = await tab.category(params);
     var username = req.session.username
-    res.render("index", { username, vegitable })
-}
-
-const home_page_fruit = async (req, res) => {
-    const fruit = await tab.fruits();
-    var username = req.session.username
-    res.render("index", { username, fruit })
+    res.render("index", { username, category,categoryName })
 }
 
 
-const home_page_bread = async (req, res) => {
-    const bread = await tab.breads();
-    var username = req.session.username
-    res.render("index", { username, bread })
-}
+// const home_page_vegitable = async (req, res) => {
+//     console.log("vegitable clicked")
+//     const vegitable = await tab.vegitables();
+//     var username = req.session.username
+//     res.render("index", { username, vegitable })
+// }
+
+// const home_page_fruit = async (req, res) => {
+//     const fruit = await tab.fruits();
+//     var username = req.session.username
+//     res.render("index", { username, fruit })
+// }
+
+
+// const home_page_bread = async (req, res) => {
+//     const bread = await tab.breads();
+//     var username = req.session.username
+//     res.render("index", { username, bread })
+// }
+
+
+
 
 // const home_page=(req,res)=>{
 //     const allProduct=tab.allProducts();
@@ -304,4 +320,4 @@ const checkUserOut = async (req, res) => {
 
 
 
-module.exports = { login_page, signup_page, addUser, checkUserIn, isUser, verify_page, checkUserOut, home_page, verifyEmail, home_page_vegitable, home_page_fruit, home_page_bread,productDetails }
+module.exports = { login_page, signup_page, addUser, checkUserIn, isUser, verify_page,homePageCategory, checkUserOut, homePage, verifyEmail,productDetails }

@@ -24,10 +24,12 @@ router.get("/signout",userControl.checkUserOut)
 
 
 
-router.get("/home",userControl.isUser, userControl.home_page)
-router.get("/home/vegitable",userControl.isUser, userControl.home_page_vegitable)
-router.get("/home/fruit",userControl.isUser, userControl.home_page_fruit)
-router.get("/home/bread",userControl.isUser, userControl.home_page_bread)
+router.get("/home",userControl.isUser, userControl.homePage)
+router.get("/home/:category",userControl.isUser, userControl.homePageCategory)
+
+// router.get("/home/vegitable",userControl.isUser, userControl.home_page_vegitable)
+// router.get("/home/fruit",userControl.isUser, userControl.home_page_fruit)
+// router.get("/home/bread",userControl.isUser, userControl.home_page_bread)
 
 
 
