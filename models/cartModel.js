@@ -14,16 +14,20 @@ const cartSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    productid:{
+        type:String,
+        required:true
+    },
    image:{
     type:Array,
     required:true
     },
     price:{
-        type:String,
+        type:Number,
         required:true
     },
     quantity:{
-        type:String,
+        type:Number,
         required:1
     }
  

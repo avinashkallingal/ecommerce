@@ -44,7 +44,16 @@ router.get('/productdetails/:productname',userControl.isUser,userControl.product
 router.get("/cart", cartControl.showCart)
 
 //router to submit to cart
-router.post("/user/addToCart/:productName", cartControl.addCart)
+router.post("/user/addToCart/:productId", cartControl.addCart)
+
+//Rrouter for updating quantity value
+router.get("/updateQuantityMinus/:productId",cartControl.updateQuantityMinus)
+router.get("/updateQuantityPlus/:productId",cartControl.updateQuantityPlus)
+
+//router for delete cart elements
+router.get("/cartElementDelete/:productId",cartControl.deleteCartElemet)
+
+
 
 
 module.exports = router

@@ -2,6 +2,7 @@ const express=require('express')
 const session=require('express-session')
 const path=require('path')
 const app=express();
+const Handlebars = require('hbs');
 
 
 
@@ -26,10 +27,21 @@ app.use(function (req, res, next) {
 
 app.use(express.static(path.join(__dirname,"public")))
 
+
+// Define the subTotal helper
+Handlebars.registerHelper('subTotal', function (price, quantity) {
+    return price * quantity;
+  });
+  
+  // Now you can use 'subTotal' in your Handlebars templates
+
 app.set('views',[
     path.join(__dirname,'views/user'),
     path.join(__dirname,'views/admin')
 ])
+
+
+
 
 var userRoute=require("./routers/userRoute")
 var adminRoute=require("./routers/adminRoute")
