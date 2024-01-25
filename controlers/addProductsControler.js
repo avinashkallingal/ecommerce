@@ -1,8 +1,10 @@
-const productsModel = require("../models/productsModel")
+const productsModel = require("../models/productModel")
+const categoryModel = require("../models/categoryModel")
 const path = require("path")
 
-const showProducts = (req, res) => {
-    res.render("add_products")
+const showProducts = async(req, res) => {
+    const category=await categoryModel.find()
+    res.render("add_products",{category})
 }
 
 

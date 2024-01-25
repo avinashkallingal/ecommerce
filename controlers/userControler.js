@@ -5,7 +5,7 @@ const sendEmail = require("../utils/sendEmail")
 const jwt = require("jsonwebtoken")
 require('dotenv').config()
 const otpGenerator = require('otp-generator')
-const productsModel = require("../models/productsModel")
+const productsModel = require("../models/productModel")
 const categoryModel = require('../models/categoryModel')
 const session=require('express-session')
 

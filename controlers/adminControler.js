@@ -1,5 +1,5 @@
 const userModel = require("../models/userModel")
-const productModel = require("../models/productsModel")
+const productModel = require("../models/productModel")
 const bcrypt = require("bcrypt")
 const userControl = require("../controlers/userControler")
 var mongoose = require("mongoose");

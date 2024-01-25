@@ -3,7 +3,8 @@ const userControl = require("../controlers/userControler")
 const tab = require("../controlers/tabSelection")
 const session = require("express-session")
 const path=require('path')
-const productsModel = require("../models/productsModel")
+const productsModel = require("../models/productModel")
+const cartControl = require('../controlers/cartControler')
 
 
 const router = express.Router();
@@ -27,6 +28,8 @@ router.get("/signout",userControl.checkUserOut)
 router.get("/home",userControl.isUser, userControl.homePage)
 router.get("/home/:category",userControl.isUser, userControl.homePageCategory)
 
+
+
 // router.get("/home/vegitable",userControl.isUser, userControl.home_page_vegitable)
 // router.get("/home/fruit",userControl.isUser, userControl.home_page_fruit)
 // router.get("/home/bread",userControl.isUser, userControl.home_page_bread)
@@ -36,6 +39,12 @@ router.get("/home/:category",userControl.isUser, userControl.homePageCategory)
 
 //router to show product details
 router.get('/productdetails/:productname',userControl.isUser,userControl.productDetails)
+
+//router to show cart
+router.get("/cart", cartControl.showCart)
+
+//router to submit to cart
+router.post("/user/addToCart/:productName", cartControl.addCart)
 
 
 module.exports = router

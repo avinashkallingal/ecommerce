@@ -1,4 +1,4 @@
-const product = require("../models/productsModel")
+const product = require("../models/productModel")
 const categoryModel = require("../models/categoryModel")
 
 
