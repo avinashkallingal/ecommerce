@@ -5,6 +5,7 @@ const session = require("express-session")
 const path=require('path')
 const productsModel = require("../models/productModel")
 const cartControl = require('../controlers/cartControler')
+const checkoutControl = require('../controlers/checkoutControler')
 
 
 const router = express.Router();
@@ -52,6 +53,10 @@ router.get("/updateQuantityPlus/:productId",cartControl.updateQuantityPlus)
 
 //router for delete cart elements
 router.get("/cartElementDelete/:productId",cartControl.deleteCartElemet)
+
+//router to show checkout page
+router.get("/checkout",checkoutControl.showCheckout)
+
 
 
 
