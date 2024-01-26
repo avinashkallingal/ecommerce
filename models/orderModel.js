@@ -9,6 +9,10 @@ const orderSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    name:{
+        type:String,
+        required:true
+    },
     orderDate:{
         type:Date,
         required:true
@@ -25,7 +29,7 @@ const orderSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    adminCancell:{
+    adminCancel:{
         type:Number,
         required:true
     },
@@ -33,7 +37,7 @@ const orderSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    quentity:{
+    quantity:{
         type:Number,
         required:true
     },
@@ -58,6 +62,10 @@ const orderSchema = new mongoose.Schema({
             type:String,
             required:true
         },
+        phone:{
+            type:Number,
+            required:true
+        }
     },
 })
-module.exports=mongoose.model("address",orderSchema);
+module.exports=mongoose.model("orders",orderSchema);

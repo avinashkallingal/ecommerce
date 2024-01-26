@@ -6,6 +6,7 @@ const path=require('path')
 const productsModel = require("../models/productModel")
 const cartControl = require('../controlers/cartControler')
 const checkoutControl = require('../controlers/checkoutControler')
+const orderControl = require('../controlers/orderControler')
 
 
 const router = express.Router();
@@ -56,6 +57,11 @@ router.get("/cartElementDelete/:productId",cartControl.deleteCartElemet)
 
 //router to show checkout page
 router.get("/checkout",checkoutControl.showCheckout)
+
+//router to add data to order DB
+router.post("/confirmpage",orderControl.orderConfirmPage)
+router.get("/addtoorder",orderControl.addOrder)
+
 
 
 
