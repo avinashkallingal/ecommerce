@@ -1,7 +1,7 @@
 const userModel = require("../models/userModel")
 const productsModel = require("../models/productModel")
 const categoryModel = require('../models/categoryModel')
-const userControl = require('../controlers/userControler')
+const userControl = require('./userControler')
 const tab = require("./tabSelection")
 const cartModel = require("../models/cartModel")
 const orderModel = require("../models/orderModel")
@@ -55,7 +55,8 @@ const orderConfirmPage=async(req,res)=>{
 const addOrder=async (req,res)=>{
     try {
         const cart = await cartModel.find({ username: req.session.username })
-        console.log(req.session.username)    
+        console.log(req.session.username)   
+        console.log(req.session.addressData.Delivery+" payment method")
        
         // const count = await cartModel.find().count();       
       
@@ -74,6 +75,7 @@ const addOrder=async (req,res)=>{
                 orderDate:addDate,
                 price:cart[i].price,
                 status:["Placed","Shipped","Out for delivery","Delivered Successfully"],
+                payment:req.session.addressData.Delivery,
                 adminCancel:0,
                 product:cart[i].product,
                 quantity:cart[i].quantity,
@@ -107,5 +109,7 @@ const addOrder=async (req,res)=>{
 
 
 }
+
+
 
 module.exports = { addOrder,orderConfirmPage }

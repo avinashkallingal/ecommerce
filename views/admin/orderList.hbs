@@ -157,9 +157,9 @@
         {{!-- need to copy for every page starts --}}
         <li><a href="/admin/home"> <i class="icon-home"></i>Home </a></li>
         <li><a href="/admin/listusers"> <i class="icon-windows"></i>Users </a></li>
-        <li class="active"><a href="/admin/productlist"> <i class="icon-grid"></i>products </a></li>
+        <li><a href="/admin/productlist"> <i class="icon-grid"></i>products </a></li>
         <li><a href="/admin/listcategory"> <i class="fa fa-bar-chart"></i>Category </a></li>
-        <li><a href="/admin/orderlist"> <i class="icon-padnote"></i>Orders </a></li>
+        <li class="active"><a href="/admin/orderlist"> <i class="icon-padnote"></i>Orders </a></li>
         {{!-- <i class="icon-windows"></i> --}}
 
         {{!-- need to copy for every page ends --}}
@@ -188,11 +188,7 @@
                 <div class="title"><strong>Products details</strong></div>
                 <!-- button add products -->
 
-                <div class="col-sm-9 ml-auto align-items-center">
-                  <form action="/admin/add_products" method="get">
-                    <button type="submit" class="btn btn-primary">Add Products</button>
-                  </form>
-                </div>
+
                 <!-- button ends -->
 
                 <div class="table-responsive">
@@ -201,132 +197,59 @@
                   <table class="table table-striped table-hover text-center">
                     <thead>
                       <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Edit</th>
-                        <th scope="col">list</th>
+                        <th scope="col">Order Id</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total Price</th>
+                        <th scope="col">Payment</th>
+                        <th scope="col">Delivey Status</th>
+                        <th scope="col">Update</th>
+                        <th scope="col">Details</th>
                       </tr>
                     </thead>
-                    {{#each products}}
+                    {{#each order}}
                     <tbody>
                       <tr>
-                        <th>{{this.productname}}</th>
-                        <td>{{this.category}}</td>
-                        <td>{{this.price}}</td>
-                        <td>{{this.stock}}</td>
+                        <th>{{this.orderId}}</th>
+                        <th>{{this.username}}</th>
+                        <td>{{this.orderDate}}</td>
+                        <td>{{this.product}}</td>
+                        <td>{{this.quantity}}</td>
+                        <td>{{subTotal this.price this.quantity}}</td>
+                        <td>{{this.payment}}</td>
+
                         <td>
-                          <img style="width: auto;height: 50px;" src="{{this.imagepath.[0]}}" alt="Product Image">
+                          {{#if this.adminCancel}}
+                          <button class="btn btn-danger">Canceled</button>
+                          {{else}}
+                          <a href="/admin/statusUpdate?id={{this.orderId}}&status={{this.status.[0]}}&product={{this.product}}"
+                            onclick="return confirm('Are you sure you want to change Order status')"
+                            class="btn btn-success">{{this.status.[0]}}</a>
+                          {{/if}}
 
-                        </td>
-                        {{!-- adding edit page as modal --}}
-                        <td><!-- Button trigger modal -->
-                          <a href="/admin/products?val={{this.productname}}" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModal{{@key}}">
-                            Edit
-                          </a>
-
-                          <!-- Modal -->
-                          <div class="modal fade" id="exampleModal{{@key}}" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                              <form action="/admin/edit_products/{{this._id}}" method="post"
-                                enctype="multipart/form-data">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <div class="form-group">
-                                      <label class="form-control-label">Name</label>
-                                      <input type="text" value="{{this.productname}}" class="form-control" name="name">
-                                      {{!-- <p id="check"> {{this.name}}</p> --}}
-                                    </div>
-
-                                    <div class="form-group">
-                                      <label class="form-control-label">Price</label>
-                                      <input type="number" value="{{this.price}}" class="form-control" name="price">
-                                    </div>
-
-                                    <div class="form-group">
-                                      <label class="form-control-label">Stock</label>
-                                      <input type="number" value="{{this.stock}}" class="form-control" name="stock">
-                                    </div>
-
-                                    <div class="form-group">
-                                      <label class="form-control-label">Category</label>
-                                      <br>
-                                      {{!-- <select class="form-control" name="category"
-                                        aria-placeholder="{{this.category}}">
-                                        {{#each categoryName}}
-                                        <option value='{{this.category}}'>{{this.category}}</option>
-                                        {{/each}}
-                                      </select> --}}
-                                      <input type="text" value="{{this.category}}" class="form-control" name="category">
-
-                                    </div>
-                                    <div class="form-group">
-                                      <label class="form-control-label">Description</label>
-                                      <input type="text" value="{{this.description}}" class="form-control"
-                                        name="description">
-                                    </div>
-
-
-                                    <div class="form-group contanier">
-                                      <label class="form-control-label">Product Images</label>
-                                      <div class="row ">
-                                        <img src="{{this.imagepath.[0]}}" alt="img of product"
-                                          style="height: 50px;width:50px" class="ml-5 ">
-                                        <div> <input name="image" type="file" class="form-control"></div>
-                                        <img src="{{this.imagepath.[1]}}" alt="img of product"
-                                          style="height: 50px;width:50px" class="ml-5">
-                                        <div> <input name="image" type="file" class="form-control"></div>
-                                        {{!-- <img src="{{this.imagepath.[2]}}" alt="img of product"
-                                          style="height: 50px;width:50px" class="ml-5"> --}}
-                                        {{!-- <div> <input name="image" type="file" class="form-control"
-                                            placeholder="you can add multiple images" multiple required></div> --}}
-                                        {{!-- <img src="{{this.imagepath.[3]}}" alt="img of product"
-                                          style="height: 50px;width:50px" class="ml-5"> --}}
-                                        {{!-- <div> <input name="image" type="file" class="form-control"
-                                            placeholder="you can add multiple images" multiple required></div> --}}
-
-
-                                      </div>
-                                    </div>
-                                    {{!-- <div class="form-group">
-                                      <label class="form-control-label">Upload Front Image</label>
-                                      <br>
-                                      <input type="file" name="images" multiple>
-                                    </div> --}}
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                  </div>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-
+                          {{!-- <button onclick="return confirm('Are you sure to want to change Order status')"
+                            class="btn btn-success">{{this.status.[0]}}</button> --}}
 
                         </td>
                         <td>
-                          <a href="/admin/unlist/{{this.productname}}">
-                            {{#if this.display }}
-                            <button class="btn btn-success">Un List</button>
-                            {{else}}
-                            <button class="btn btn-danger">List</button>
-                            {{/if}}
+                          <a href="/admin/cancelOrder?product={{this.product}}&id={{this.orderId}}&username={{this.username}}">
+                          
+                           
+                            <button onclick="return confirm('are you sure to cancel the order')" class="btn btn-danger">Cancel</button>
+                           
                           </a>
                         </td>
-                        {{!-- <td><a href="/admin/deleteproduct/{{this.name}}"
-                            style="text-decoration: none; color:white" class="btn btn-danger"
-                            onclick="return confirm(' Are you sure, You want to delete the product')">list</a></td> --}}
+
+                       
+                        <td>
+                        <a href="/{{this.productname}}">
+
+                            <button class="btn btn-success">Details</button>
+                          </a>
+                        </td>
+                       
                       </tr>
                     </tbody>
                     {{/each}}

@@ -331,4 +331,7 @@ const blockuser = async (req, res) => {
 
 }
 
+
+
+
 module.exports = { adminLogin, adminCheck, home_page, checkUserOut, isAdmin, showProducts, unlistProduct, editProduct, listusers,listCategory,addCategory,editCategory,unlistCategory, blockuser }

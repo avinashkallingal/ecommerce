@@ -8,6 +8,7 @@ const otpGenerator = require('otp-generator')
 const productsModel = require("../models/productModel")
 const categoryModel = require('../models/categoryModel')
 const session=require('express-session')
+const cartModel = require("../models/cartModel")
 
 
 
@@ -113,13 +114,14 @@ const verifyEmail = async (req, res) => {
 
 
 const homePage = async (req, res) => {
+    const count = await cartModel.find().count();
     const allProduct = await tab.allProducts();
     const categoryName = await tab.categoryName();
     console.log(categoryName+" category name")
     // const category = await categoryModel.find({})
     // console.log(category)
     var username = req.session.username
-    res.render("index", { username, allProduct,categoryName })
+    res.render("index", { username, allProduct,categoryName,count })
 }
 
 
@@ -127,10 +129,11 @@ const homePageCategory = async (req, res) => {
     console.log("category clicked")
     const params=req.params.category
     console.log(params+" category name is this")
+    const count = await cartModel.find().count();
     const categoryName = await tab.categoryName();
     const category = await tab.category(params);
     var username = req.session.username
-    res.render("index", { username, category,categoryName })
+    res.render("index", { username, category,categoryName,count })
 }
 
 

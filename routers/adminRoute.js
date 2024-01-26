@@ -3,6 +3,7 @@ const adminControl = require("../controlers/adminControler")
 const addProducts = require("../controlers/addProductsControler.js")
 const upload=require("../controlers/multerControler.js")
 const multer = require('multer');
+const adminOrderControl = require("../controlers/adminOrderControler.js")
 
 
 
@@ -51,6 +52,15 @@ router.get('/unlistCategory/:id',adminControl.isAdmin,adminControl.unlistCategor
 
 //router to block users
 router.get('/block/:id',adminControl.isAdmin,adminControl.blockuser)
+
+
+//router to list orders
+router.get('/orderlist',adminControl.isAdmin,adminOrderControl.listOrders)
+
+router.get('/statusUpdate',adminControl.isAdmin,adminOrderControl.updateStatus)
+
+router.get('/cancelOrder',adminControl.isAdmin,adminOrderControl.cancelOrder)
+
 
 
 

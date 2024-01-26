@@ -29,6 +29,10 @@ const orderSchema = new mongoose.Schema({
         type:Array,
         required:true
     },
+    payment:{
+        type:String,
+        required:true
+    },
     adminCancel:{
         type:Number,
         required:true

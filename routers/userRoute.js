@@ -6,7 +6,7 @@ const path=require('path')
 const productsModel = require("../models/productModel")
 const cartControl = require('../controlers/cartControler')
 const checkoutControl = require('../controlers/checkoutControler')
-const orderControl = require('../controlers/orderControler')
+const orderControl = require('../controlers/userOrderControler')
 
 
 const router = express.Router();
@@ -46,7 +46,8 @@ router.get('/productdetails/:productname',userControl.isUser,userControl.product
 router.get("/cart", cartControl.showCart)
 
 //router to submit to cart
-router.post("/user/addToCart/:productId", cartControl.addCart)
+router.post("/addToCart/:productId", cartControl.addCart)
+router.get("/addToCart/:productId", cartControl.addCartSigleProduct)
 
 //Rrouter for updating quantity value
 router.get("/updateQuantityMinus/:productId",cartControl.updateQuantityMinus)
