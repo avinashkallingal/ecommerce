@@ -26,7 +26,7 @@ const orderSchema = new mongoose.Schema({
         required:true
     },
     status:{
-        type:String,
+        type:Array,
         required:true
     },
     adminCancel:{

@@ -73,7 +73,7 @@ const addOrder=async (req,res)=>{
                 name:req.session.addressData.name,
                 orderDate:addDate,
                 price:cart[i].price,
-                status:"placed",
+                status:["Placed","Shipped","Out for delivery","Delivered Successfully"],
                 adminCancel:0,
                 product:cart[i].product,
                 quantity:cart[i].quantity,
