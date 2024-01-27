@@ -50,6 +50,19 @@ const orderConfirmPage=async(req,res)=>{
 
 }
 
+const showOrderPage=async (req, res) => {
+    try {
+        const order = await orderModel.find();
+        console.log(" orders in user page list got")
+        if (order) {
+            res.render("orderHistory", { order })
+        }
+    }
+    catch (e) {
+        console.log("error while showing orderlist in admin order controler" + e)
+    }
+}
+
 
 
 const addOrder=async (req,res)=>{
@@ -79,6 +92,7 @@ const addOrder=async (req,res)=>{
                 adminCancel:0,
                 product:cart[i].product,
                 quantity:cart[i].quantity,
+                image:cart[i].image,
                 address:{
                     houseName:req.session.addressData.housename,
                     city:req.session.addressData.city,
@@ -110,6 +124,16 @@ const addOrder=async (req,res)=>{
 
 }
 
+const cancelOrder=async (req,res)=>{
+    const product=req.query.product
+    const id=req.query.id
+    const user=req.query.username
+    console.log(id+"on cancel order")
+    console.log(product+"on cancel order")
+    await orderModel.updateOne({$and:[{ orderId: id,product:product}] }, { $set: { adminCancel: 1 } });
+    res.redirect("/orderHistory")
+}
 
 
-module.exports = { addOrder,orderConfirmPage }
+
+module.exports = { addOrder,orderConfirmPage,showOrderPage,cancelOrder }

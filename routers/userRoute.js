@@ -7,6 +7,10 @@ const productsModel = require("../models/productModel")
 const cartControl = require('../controlers/cartControler')
 const checkoutControl = require('../controlers/checkoutControler')
 const orderControl = require('../controlers/userOrderControler')
+const userDetailsControl = require('../controlers/userDetailsControler')
+const addressControl = require('../controlers/userAddressControler')
+const adminOrderControl = require('../controlers/adminOrderControler')
+
 
 
 const router = express.Router();
@@ -46,22 +50,41 @@ router.get('/productdetails/:productname',userControl.isUser,userControl.product
 router.get("/cart", cartControl.showCart)
 
 //router to submit to cart
-router.post("/addToCart/:productId", cartControl.addCart)
-router.get("/addToCart/:productId", cartControl.addCartSigleProduct)
+router.post("/addToCart/:productId",userControl.isUser, cartControl.addCart)
+router.get("/addToCart/:productId",userControl.isUser,cartControl.addCartSigleProduct)
 
 //Rrouter for updating quantity value
-router.get("/updateQuantityMinus/:productId",cartControl.updateQuantityMinus)
-router.get("/updateQuantityPlus/:productId",cartControl.updateQuantityPlus)
+router.get("/updateQuantityMinus/:productId",userControl.isUser,cartControl.updateQuantityMinus)
+router.get("/updateQuantityPlus/:productId",userControl.isUser,cartControl.updateQuantityPlus)
 
 //router for delete cart elements
-router.get("/cartElementDelete/:productId",cartControl.deleteCartElemet)
+router.get("/cartElementDelete/:productId",userControl.isUser,cartControl.deleteCartElemet)
 
 //router to show checkout page
-router.get("/checkout",checkoutControl.showCheckout)
+router.get("/checkout",userControl.isUser,checkoutControl.showCheckout)
 
 //router to add data to order DB
-router.post("/confirmpage",orderControl.orderConfirmPage)
-router.get("/addtoorder",orderControl.addOrder)
+router.post("/confirmpage",userControl.isUser,orderControl.orderConfirmPage)
+router.get("/addtoorder",userControl.isUser,orderControl.addOrder)
+
+//router for showing user details page
+router.get("/userDetails",userControl.isUser,userDetailsControl.showPage)
+
+//router for user order history page
+router.get("/orderHistory",userControl.isUser,orderControl.showOrderPage)
+
+//roured for add address page showing
+router.get("/addAddressPage",userControl.isUser,addressControl.showPage)
+router.post("/addAddress",userControl.isUser,addressControl.addAddress)
+
+//router for cancel order
+router.get('/cancelOrderuser',userControl.isUser,orderControl.cancelOrder)
+
+
+
+
+
+
 
 
 
