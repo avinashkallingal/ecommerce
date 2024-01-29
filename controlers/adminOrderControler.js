@@ -48,8 +48,15 @@ const cancelOrder=async (req,res)=>{
     const user=req.query.username
     console.log(id+"on cancel order")
     console.log(product+"on cancel order")
+    const order=await orderModel.find({orderId:id,product:product});
+    if(order.status=="Delivered Successfully"){
+
     await orderModel.updateOne({$and:[{ orderId: id,product:product}] }, { $set: { adminCancel: 1 } });
-    res.redirect("/admin/orderlist")
+    res.redirect("/admin/orderlist")}
+    else{
+        console.log("canot cancel")
+        res.redirect("/admin/orderlist")
+    }
 }
 
 

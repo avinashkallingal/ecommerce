@@ -222,7 +222,7 @@
 
                         <td>
                           {{#if this.adminCancel}}
-                          <button class="btn btn-danger">Canceled</button>
+                          <button class="btn btn-light" disabled>Canceled</button>
                           {{else}}
                           <a href="/admin/statusUpdate?id={{this.orderId}}&status={{this.status.[0]}}&product={{this.product}}"
                             onclick="return confirm('Are you sure you want to change Order status')"
@@ -234,11 +234,15 @@
 
                         </td>
                         <td>
+                          {{!-- {{#if 'this.status== 'Delivered Successfully'}} --}}
+                          {{#if (cancelCondition this.adminCancel this.status.[0])}}
+                          <button class="btn btn-light" disabled></button>
+                          {{else}}
                           <a href="/admin/cancelOrder?product={{this.product}}&id={{this.orderId}}&username={{this.username}}">
                           
                            
                             <button onclick="return confirm('are you sure to cancel the order')" class="btn btn-danger">Cancel</button>
-                           
+                           {{/if}}
                           </a>
                         </td>
 

@@ -47,7 +47,7 @@ router.get("/home/:category",userControl.isUser, userControl.homePageCategory)
 router.get('/productdetails/:productname',userControl.isUser,userControl.productDetails)
 
 //router to show cart
-router.get("/cart", cartControl.showCart)
+router.get("/cart",userControl.isUser, cartControl.showCart)
 
 //router to submit to cart
 router.post("/addToCart/:productId",userControl.isUser, cartControl.addCart)
@@ -76,6 +76,9 @@ router.get("/orderHistory",userControl.isUser,orderControl.showOrderPage)
 //roured for add address page showing
 router.get("/addAddressPage",userControl.isUser,addressControl.showPage)
 router.post("/addAddress",userControl.isUser,addressControl.addAddress)
+
+//router for edit address
+router.get("/addAddressEditPage",userControl.isUser,addressControl.showEditPage)
 
 //router for cancel order
 router.get('/cancelOrderuser',userControl.isUser,orderControl.cancelOrder)

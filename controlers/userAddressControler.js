@@ -15,6 +15,12 @@ const showPage = (req, res) => {
     res.render("addAddress")
 }
 
+const showEditPage = (req, res) => {
+    
+    res.render("addressEdit")
+}
+
+
 const addAddress = async (req, res) => {
 
     try {
@@ -53,4 +59,4 @@ const addAddress = async (req, res) => {
 
 
 
-module.exports = { showPage, addAddress }
+module.exports = { showPage, addAddress,showEditPage }

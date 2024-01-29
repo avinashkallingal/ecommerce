@@ -32,6 +32,11 @@ app.use(express.static(path.join(__dirname,"public")))
 Handlebars.registerHelper('subTotal', function (price, quantity) {
     return price * quantity;
   });
+
+//for cancel button disable
+Handlebars.registerHelper("cancelCondition",(cond1,cond2)=>{
+return (cond1||cond2=="Delivered Successfully")
+})
   
   // Now you can use 'subTotal' in your Handlebars templates
 
